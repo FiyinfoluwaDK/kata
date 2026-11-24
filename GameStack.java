@@ -5,58 +5,54 @@ public class GameStack {
     private int numberOfGames;
 
     public GameStack(int capacity) {
+        if (capacity <= 0) {
+            throw new IllegalArgumentException("Invalid capacity");
+        }
+
         games = new String[capacity];
         numberOfGames = 0;
     }
 
-  
     public boolean isEmpty() {
         return numberOfGames == 0;
     }
 
-   
     public boolean isFull() {
         return numberOfGames == games.length;
     }
 
-  
     public void push(String game) {
         if (isFull()) {
-            System.out.println("Stack is full");
-            return;
+            throw new IllegalStateException("Stack is full");
         }
 
         games[numberOfGames] = game;
         numberOfGames++;
     }
 
-  
     public String pop() {
         if (isEmpty()) {
-            return null;
+            throw new IllegalStateException("Stack is empty");
         }
 
+        String removedGame = games[numberOfGames - 1];
+        games[numberOfGames - 1] = null;
         numberOfGames--;
-        String game = games[numberOfGames];
-        games[numberOfGames] = null;
 
-        return game;
+        return removedGame;
     }
 
-   
     public String peek() {
         if (isEmpty()) {
-            return null;
+            throw new IllegalStateException("Stack is empty");
         }
 
         return games[numberOfGames - 1];
     }
 
-
     public int size() {
         return numberOfGames;
     }
-
 
     public void clear() {
         for (int count = 0; count < numberOfGames; count++) {
