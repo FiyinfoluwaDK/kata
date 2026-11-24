@@ -4,8 +4,8 @@ public class GameStack {
     private String[] games;
     private int numberOfGames;
 
-    public GameStack(int GameLibraryStark) {
-        games = new String[GameLibraryStark];
+    public GameStack(int capacity) {
+        games = new String[capacity];
         numberOfGames = 0;
     }
 
