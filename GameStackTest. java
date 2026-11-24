@@ -34,17 +34,7 @@ public class GameStackTest {
         assertEquals("Minecraft", gameStack.peek());
     }
 
-    @Test
-    public void testPushWhenFull() {
-        GameStack gameStack = new GameStack(2);
-
-        gameStack.push("Minecraft");
-        gameStack.push("Dead Cells");
-        gameStack.push("Limbus Company");
-
-        assertEquals(2, gameStack.size());
-        assertEquals("Dead Cells", gameStack.peek());
-    }
+    
 
     @Test
     public void testPop() {
@@ -58,13 +48,7 @@ public class GameStackTest {
         assertEquals("Minecraft", gameStack.peek());
     }
 
-    @Test
-    public void testPopEmptyStack() {
-        GameStack gameStack = new GameStack(5);
-
-        assertNull(gameStack.pop());
-        assertTrue(gameStack.isEmpty());
-    }
+    
 
     @Test
     public void testPeek() {
@@ -78,11 +62,34 @@ public class GameStackTest {
     }
 
     @Test
-    public void testPeekEmptyStack() {
-        GameStack gameStack = new GameStack(5);
+    public void testPushWhenFull() {
+    GameStack gameStack = new GameStack(2);
 
-        assertNull(gameStack.peek());
-    }
+    gameStack.push("Minecraft");
+    gameStack.push("Dead Cells");
+
+    assertThrows(IllegalStateException.class, () ->
+        gameStack.push("Limbus Company")
+    );
+}
+
+    @Test
+    public void testPopWhenEmpty() {
+    GameStack gameStack = new GameStack(5);
+
+    assertThrows(IllegalStateException.class, () ->
+        gameStack.pop()
+    );
+}
+
+    @Test
+    public void testPeekWhenEmpty() {
+    GameStack gameStack = new GameStack(5);
+
+    assertThrows(IllegalStateException.class, () ->
+        gameStack.peek()
+    );
+}
 
     @Test
     public void testSize() {
