@@ -1,0 +1,130 @@
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class GameStackTest {
+
+    @Test
+    public void testEmptyStack() {
+        GameStack gameStack = new GameStack(5);
+
+        assertTrue(gameStack.isEmpty());
+        assertEquals(0, gameStack.size());
+    }
+
+    @Test
+    public void testFullStack() {
+        GameStack gameStack = new GameStack(2);
+
+        gameStack.push("Minecraft");
+        gameStack.push("Dead Cells");
+
+        assertTrue(gameStack.isFull());
+    }
+
+    @Test
+    public void testPush() {
+        GameStack gameStack = new GameStack(5);
+
+        gameStack.push("Minecraft");
+
+        assertFalse(gameStack.isEmpty());
+        assertEquals(1, gameStack.size());
+        assertEquals("Minecraft", gameStack.peek());
+    }
+
+    @Test
+    public void testPushWhenFull() {
+        GameStack gameStack = new GameStack(2);
+
+        gameStack.push("Minecraft");
+        gameStack.push("Dead Cells");
+        gameStack.push("Limbus Company");
+
+        assertEquals(2, gameStack.size());
+        assertEquals("Dead Cells", gameStack.peek());
+    }
+
+    @Test
+    public void testPop() {
+        GameStack gameStack = new GameStack(5);
+
+        gameStack.push("Minecraft");
+        gameStack.push("Dead Cells");
+
+        assertEquals("Dead Cells", gameStack.pop());
+        assertEquals(1, gameStack.size());
+        assertEquals("Minecraft", gameStack.peek());
+    }
+
+    @Test
+    public void testPopEmptyStack() {
+        GameStack gameStack = new GameStack(5);
+
+        assertNull(gameStack.pop());
+        assertTrue(gameStack.isEmpty());
+    }
+
+    @Test
+    public void testPeek() {
+        GameStack gameStack = new GameStack(5);
+
+        gameStack.push("Minecraft");
+        gameStack.push("Dead Cells");
+
+        assertEquals("Dead Cells", gameStack.peek());
+        assertEquals(2, gameStack.size());
+    }
+
+    @Test
+    public void testPeekEmptyStack() {
+        GameStack gameStack = new GameStack(5);
+
+        assertNull(gameStack.peek());
+    }
+
+    @Test
+    public void testSize() {
+        GameStack gameStack = new GameStack(5);
+
+        gameStack.push("Minecraft");
+        gameStack.push("Dead Cells");
+        gameStack.push("Limbus Company");
+
+        assertEquals(3, gameStack.size());
+    }
+
+    @Test
+    public void testClear() {
+        GameStack gameStack = new GameStack(5);
+
+        gameStack.push("Minecraft");
+        gameStack.push("Dead Cells");
+
+        gameStack.clear();
+
+        assertTrue(gameStack.isEmpty());
+        assertEquals(0, gameStack.size());
+        assertNull(gameStack.peek());
+    }
+
+    @Test
+    public void testContains() {
+        GameStack gameStack = new GameStack(5);
+
+        gameStack.push("Minecraft");
+        gameStack.push("Dead Cells");
+
+        assertTrue(gameStack.contains("Minecraft"));
+        assertTrue(gameStack.contains("Dead Cells"));
+        assertFalse(gameStack.contains("Limbus Company"));
+    }
+
+    @Test
+    public void testContainsEmptyStack() {
+        GameStack gameStack = new GameStack(5);
+
+        assertFalse(gameStack.contains("Minecraft"));
+    }
+}
